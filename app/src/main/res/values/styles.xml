@@ -1,0 +1,61 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="SplashTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/splashscreen</item>
+    </style>-
+
+    <style name="word_title">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:paddingLeft">8dp</item>
+    </style>
+
+    <style name="MyDialogTheme" parent="Theme.MaterialComponents.Light.Dialog.Alert">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="textview">
+        <item name="android:layout_width">@dimen/textview_small_width</item>
+        <item name="android:layout_height">@dimen/textview_small_height</item>
+        <item name="android:gravity">fill</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">?attr/actionModeSplitBackground</item>
+    </style>
+
+    <style name="editext">
+        <item name="android:gravity">fill</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">?attr/actionModeSplitBackground</item>
+    </style>
+
+    <style name="spinner_table">
+        <item name="android:layout_width">@dimen/sppiner_tab_width</item>
+        <item name="android:layout_height">@dimen/sppiner_tab_height</item>
+        <item name="android:padding">@dimen/sppiner_tab_padding</item>
+        <item name="android:layout_alignParentRight">true</item>
+    </style>
+    <style name="checkbox_levant">
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_height">@dimen/checkBox_height</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Invent.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.Invent.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+</resources>
+
+

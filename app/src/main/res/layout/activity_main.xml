@@ -1,0 +1,553 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="br.com.levantamento.viewmodel.LevantamentoViewModel" />
+    </data>
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:openDrawer="start">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:context=".MainActivity">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginStart="@dimen/marginStart"
+                android:elevation="4dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:titleMarginStart="100sp"
+                app:titleTextAppearance="@style/TextAppearance.AppCompat.Large" />
+            <!--                android:background="@color/colorToolbar"
+            app:logo="@drawable/ic_content_paste_black_24dp"
+            app:title="Empresa Modelo"-->
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/inventario_recyclerView"
+                android:layout_width="350dp"
+                android:layout_height="190dp"
+                android:layout_margin="2dp"
+                android:layout_marginStart="@dimen/marginStart" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="59dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/delete_bnt"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="@dimen/marginStart"
+                    android:layout_marginEnd="100dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_rectangle"
+                    android:drawableStart="@drawable/ic_fas_trash"
+                    android:enabled="@{viewModel.btnExcluir}"
+                    android:onClick="excluirItem"
+                    android:text="@string/btn_excluir"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/cancelar_btn"
+                    android:layout_width="155dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/marginStart"
+                    android:layout_marginEnd="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_rectangle"
+                    android:drawableStart="@drawable/ic_far_times_circle"
+                    android:enabled="@{viewModel.btnCancelar}"
+                    android:onClick="@{()->viewModel.cancelarItem()}"
+                    android:text="@string/btn_cancelar"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/mainLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                tools:context=".MainActivity">
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/invFragment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorTela"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        tools:context="br.com.levantpat.view.MainActivity">
+
+                        <TextView
+                            android:id="@+id/textView5"
+                            style="@style/textview"
+                            android:layout_marginStart="2dp"
+                            android:background="@drawable/rect2d"
+                            android:text="Local"
+                            app:layout_constraintStart_toStartOf="@+id/guideline"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/textView"
+                            style="@style/textview"
+                            android:layout_marginStart="@dimen/marginStart"
+                            android:background="@drawable/rect2d"
+                            android:text="Código"
+                            app:layout_constraintStart_toStartOf="@+id/guideline"
+                            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+                        <EditText
+                            android:id="@+id/idCodigo"
+                            style="@style/editext"
+                            android:layout_width="132dp"
+                            android:layout_height="39dp"
+                            android:ems="10"
+                            android:enabled="@{viewModel.idCod}"
+                            android:inputType="text"
+                            android:text="@={viewModel.inputCodigo}"
+                            app:layout_constraintStart_toEndOf="@+id/textView"
+                            app:layout_constraintTop_toBottomOf="@+id/spinnerLocal"
+                            tools:text="001" />
+
+                        <TextView
+                            android:id="@+id/textView2"
+                            style="@style/textview"
+                            android:layout_marginStart="@dimen/marginStart"
+                            android:background="@drawable/rect2d"
+                            android:text="Descrição"
+                            app:layout_constraintStart_toStartOf="@+id/guideline"
+                            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+                        <EditText
+                            android:id="@+id/editTextDescr"
+                            style="@style/editext"
+                            android:layout_width="254dp"
+                            android:layout_height="39dp"
+                            android:ems="10"
+                            android:enabled="@{viewModel.btnSalvar}"
+                            android:gravity="start|top"
+                            android:inputType="textMultiLine"
+                            android:text="@={viewModel.inputDescricao}"
+                            app:layout_constraintStart_toEndOf="@+id/textView2"
+                            app:layout_constraintTop_toBottomOf="@+id/idCodigo"
+                            tools:text="@tools:sample/lorem" />
+
+                        <TextView
+                            android:id="@+id/txtEnd1"
+                            style="@style/textview"
+                            android:layout_marginStart="@dimen/marginStart"
+                            android:background="@drawable/rect2d"
+                            android:text="Rua"
+                            app:layout_constraintStart_toStartOf="@+id/guideline"
+                            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+                        <Spinner
+                            android:id="@+id/spinnerEnd1"
+                            style="@style/spinner_table"
+                            android:layout_marginTop="2dp"
+                            android:background="@drawable/spinner_bg"
+                            android:enabled="@{viewModel.btnSalvar}"
+                            app:hintText="Selecionar"
+                            app:layout_constraintStart_toEndOf="@+id/txtEnd1"
+                            app:layout_constraintTop_toBottomOf="@+id/editTextDescr" />
+
+                        <TextView
+                            android:id="@+id/txtEnd2"
+                            style="@style/textview"
+                            android:layout_marginStart="@dimen/marginStart"
+                            android:background="@drawable/rect2d"
+                            android:text="Coluna"
+                            app:layout_constraintStart_toStartOf="@+id/guideline"
+                            app:layout_constraintTop_toBottomOf="@+id/txtEnd1" />
+
+                        <Spinner
+                            android:id="@+id/spinnerEnd2"
+                            style="@style/spinner_table"
+                            android:background="@drawable/spinner_bg"
+                            android:enabled="@{viewModel.btnSalvar}"
+                            app:hintText="Selecionar"
+                            app:layout_constraintStart_toEndOf="@+id/txtEnd2"
+                            app:layout_constraintTop_toBottomOf="@+id/spinnerEnd1" />
+
+                        <TextView
+                            android:id="@+id/txtEnd3"
+                            style="@style/textview"
+                            android:layout_marginStart="@dimen/marginStart"
+                            android:background="@drawable/rect2d"
+                            android:text="Prateleira"
+                            app:layout_constraintStart_toStartOf="@+id/guideline"
+                            app:layout_constraintTop_toBottomOf="@+id/txtEnd2" />
+
+                        <Spinner
+                            android:id="@+id/spinnerEnd3"
+                            style="@style/spinner_table"
+                            android:background="@drawable/spinner_bg"
+                            android:enabled="@{viewModel.btnSalvar}"
+                            app:hintText="Selecionar"
+                            app:layout_constraintStart_toEndOf="@+id/txtEnd3"
+                            app:layout_constraintTop_toBottomOf="@+id/spinnerEnd2" />
+
+                        <TextView
+                            android:id="@+id/txtEnd4"
+                            style="@style/textview"
+                            android:layout_marginStart="@dimen/marginStart"
+                            android:background="@drawable/rect2d"
+                            android:text="Palete"
+                            app:layout_constraintStart_toStartOf="@+id/guideline"
+                            app:layout_constraintTop_toBottomOf="@+id/txtEnd3" />
+
+                        <Spinner
+                            android:id="@+id/spinnerEnd4"
+                            style="@style/spinner_table"
+                            android:background="@drawable/spinner_bg"
+                            android:enabled="@{viewModel.btnSalvar}"
+                            app:hintText="Selecionar"
+                            app:layout_constraintStart_toEndOf="@+id/txtEnd4"
+                            app:layout_constraintTop_toBottomOf="@+id/spinnerEnd3" />
+
+                        <TextView
+                            android:id="@+id/txtEnd5"
+                            style="@style/textview"
+                            android:layout_marginStart="@dimen/marginStart"
+                            android:background="@drawable/rect2d"
+                            android:text="Caixa"
+                            app:layout_constraintStart_toStartOf="@+id/guideline"
+                            app:layout_constraintTop_toBottomOf="@+id/txtEnd4" />
+
+                        <Spinner
+                            android:id="@+id/spinnerEnd5"
+                            style="@style/spinner_table"
+                            android:background="@drawable/spinner_bg"
+                            android:enabled="@{viewModel.btnSalvar}"
+                            app:hintText="Selecionar"
+                            app:layout_constraintStart_toEndOf="@+id/txtEnd5"
+                            app:layout_constraintTop_toBottomOf="@+id/spinnerEnd4" />
+
+                        <TextView
+                            android:id="@+id/txtEnd6"
+                            style="@style/textview"
+                            android:layout_marginStart="@dimen/marginStart"
+                            android:background="@drawable/rect2d"
+                            android:text="Cabide"
+                            app:layout_constraintStart_toStartOf="@+id/guideline"
+                            app:layout_constraintTop_toBottomOf="@+id/txtEnd5" />
+
+                        <Spinner
+                            android:id="@+id/spinnerEnd6"
+                            style="@style/spinner_table"
+                            android:background="@drawable/spinner_bg"
+                            android:enabled="@{viewModel.btnSalvar}"
+                            app:hintText="Selecionar"
+                            app:layout_constraintStart_toEndOf="@+id/txtEnd6"
+                            app:layout_constraintTop_toBottomOf="@+id/spinnerEnd5" />
+
+                        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                            android:id="@+id/floating"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|right"
+                            android:layout_marginStart="72dp"
+                            android:layout_marginTop="236dp"
+                            android:background="@color/cardview_light_background"
+                            android:contentDescription="@string/float_incluir"
+                            android:enabled="@{viewModel.btnIncluir}"
+                            android:onClick="@{()->viewModel.incluirItem()}"
+                            android:src="@drawable/ic_add_black_24dp"
+                            android:visibility="visible"
+                            app:layout_constraintStart_toEndOf="@+id/idCodigo"
+                            app:layout_constraintTop_toBottomOf="@+id/idCodigo" />
+
+                        <TextView
+                            android:id="@+id/txtEnd"
+                            style="@style/textview"
+                            android:layout_marginStart="@dimen/marginStart"
+                            android:layout_marginTop="2dp"
+                            android:background="@drawable/rect2d"
+                            android:text="1ª Contagem"
+                            app:layout_constraintStart_toStartOf="@+id/guideline"
+                            app:layout_constraintTop_toBottomOf="@+id/txtEnd6" />
+
+                        <com.vicmikhailau.maskededittext.MaskedEditText
+                            android:id="@+id/contagem1"
+                            style="@style/editext"
+                            android:layout_width="109dp"
+                            android:layout_height="37dp"
+                            android:layout_marginStart="@dimen/marginStart"
+                            android:digits="0,1,2,3,4,5,6,7,8,9"
+                            android:ems="10"
+                            android:enabled="@{viewModel.btnSalvar}"
+                            android:hint="99/99/9999"
+                            android:inputType="date"
+                            android:text="@={viewModel.inputCont1}"
+                            app:layout_constraintStart_toStartOf="@+id/guideline"
+                            app:layout_constraintTop_toBottomOf="@+id/txtEnd"
+                            app:mask="##/##/####"
+                            tools:text="@tools:sample/date/ddmmyy" />
+
+                        <TextView
+                            android:id="@+id/txtEnd7"
+                            style="@style/textview"
+                            android:layout_marginStart="@dimen/marginStart"
+                            android:layout_marginTop="2dp"
+                            android:background="@drawable/rect2d"
+                            android:text="2ª Contagem"
+                            app:layout_constraintStart_toEndOf="@+id/txtEnd"
+                            app:layout_constraintTop_toBottomOf="@+id/spinnerEnd6" />
+
+                        <com.vicmikhailau.maskededittext.MaskedEditText
+                            android:id="@+id/contagem2"
+                            style="@style/editext"
+                            android:layout_width="105dp"
+                            android:layout_height="36dp"
+                            android:layout_marginStart="@dimen/marginStart"
+                            android:digits="0,1,2,3,4,5,6,7,8,9"
+                            android:ems="10"
+                            android:enabled="@{viewModel.btnSalvar}"
+                            android:hint="99/99/9999"
+                            android:inputType="date"
+                            android:text="@={viewModel.inputCont2}"
+                            app:layout_constraintStart_toEndOf="@+id/contagem1"
+                            app:layout_constraintTop_toBottomOf="@+id/txtEnd7"
+                            app:mask="##/##/####"
+                            tools:text="@tools:sample/date/ddmmyy" />
+
+                        <TextView
+                            android:id="@+id/txtEnd8"
+                            style="@style/textview"
+                            android:layout_marginStart="@dimen/marginStart"
+                            android:layout_marginTop="2dp"
+                            android:background="@drawable/rect2d"
+                            android:text="3ª Contagem"
+                            app:layout_constraintStart_toEndOf="@+id/txtEnd7"
+                            app:layout_constraintTop_toBottomOf="@+id/spinnerEnd6" />
+
+                        <com.vicmikhailau.maskededittext.MaskedEditText
+                            android:id="@+id/contagem3"
+                            style="@style/editext"
+                            android:layout_width="109dp"
+                            android:layout_height="35dp"
+                            android:layout_marginStart="@dimen/marginStart"
+                            android:digits="0,1,2,3,4,5,6,7,8,9"
+                            android:ems="10"
+                            android:enabled="@{viewModel.btnSalvar}"
+                            android:hint="99/99/9999"
+                            android:inputType="date"
+                            android:text="@={viewModel.inputCont3}"
+                            app:layout_constraintStart_toEndOf="@+id/contagem2"
+                            app:layout_constraintTop_toBottomOf="@+id/txtEnd8"
+                            app:mask="##/##/####"
+                            tools:text="@tools:sample/date/ddmmyy" />
+
+                        <TextView
+                            android:id="@+id/txtEnd9"
+                            style="@style/textview"
+                            android:layout_marginStart="@dimen/marginStart"
+                            android:background="@drawable/rect2d"
+                            android:text="Unidade"
+                            app:layout_constraintBottom_toBottomOf="@+id/spinnerUnid"
+                            app:layout_constraintStart_toStartOf="@+id/guideline" />
+
+                        <Spinner
+                            android:id="@+id/spinnerUnid"
+                            style="@style/spinner_table"
+                            android:layout_width="135dp"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="2dp"
+                            android:layout_marginTop="2dp"
+                            android:background="@drawable/spinner_bg"
+                            android:enabled="@{viewModel.btnSalvar}"
+                            app:hintText="Unidade"
+                            app:layout_constraintStart_toEndOf="@+id/txtEnd9"
+                            app:layout_constraintTop_toBottomOf="@+id/contagem2" />
+
+                        <TextView
+                            android:id="@+id/textView4"
+                            style="@style/textview"
+                            android:layout_marginStart="@dimen/marginStart"
+                            android:layout_marginTop="2dp"
+                            android:background="@drawable/rect2d"
+                            android:text="Fabricação"
+                            app:layout_constraintStart_toStartOf="@+id/guideline"
+                            app:layout_constraintTop_toBottomOf="@+id/txtEnd9" />
+
+                        <com.vicmikhailau.maskededittext.MaskedEditText
+                            android:id="@+id/fabrDate"
+                            style="@style/editext"
+                            android:layout_width="88dp"
+                            android:layout_height="43dp"
+                            android:layout_marginTop="2dp"
+                            android:digits="0,1,2,3,4,5,6,7,8,9"
+                            android:ems="10"
+                            android:enabled="@{viewModel.btnSalvar}"
+                            android:hint="99/99/9999"
+                            android:inputType="date"
+                            android:text="@={viewModel.inputFabr}"
+                            app:layout_constraintStart_toEndOf="@+id/textView4"
+                            app:layout_constraintTop_toBottomOf="@+id/spinnerUnid"
+                            app:mask="##/##/####"
+                            tools:text="@tools:sample/date/ddmmyy" />
+
+                        <TextView
+                            android:id="@+id/textView7"
+                            style="@style/textview"
+                            android:layout_marginStart="@dimen/marginStart"
+                            android:layout_marginTop="2dp"
+                            android:background="@drawable/rect2d"
+                            android:text="Validade"
+                            app:layout_constraintStart_toStartOf="@+id/guideline"
+                            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+                        <com.vicmikhailau.maskededittext.MaskedEditText
+                            android:id="@+id/validDate2"
+                            style="@style/editext"
+                            android:layout_width="86dp"
+                            android:layout_height="39dp"
+                            android:layout_marginTop="2dp"
+                            android:digits="0,1,2,3,4,5,6,7,8,9"
+                            android:ems="10"
+                            android:enabled="@{viewModel.btnSalvar}"
+                            android:hint="99/99/9999"
+                            android:inputType="date"
+                            android:text="@={viewModel.inputValid}"
+                            app:layout_constraintStart_toEndOf="@+id/textView7"
+                            app:layout_constraintTop_toBottomOf="@+id/fabrDate"
+                            app:mask="##/##/####"
+                            tools:text="@tools:sample/date/ddmmyy" />
+
+                        <TextView
+                            android:id="@+id/textView3"
+                            style="@style/textview"
+                            android:layout_marginStart="@dimen/marginStart"
+                            android:layout_marginTop="2dp"
+                            android:background="@drawable/rect2d"
+                            android:text="Técnico"
+                            app:layout_constraintStart_toStartOf="@+id/guideline"
+                            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+                        <EditText
+                            android:id="@+id/tecnico"
+                            style="@style/editext"
+                            android:layout_width="87dp"
+                            android:layout_height="38dp"
+                            android:layout_marginTop="2dp"
+                            android:ems="10"
+                            android:enabled="@{viewModel.btnSalvar}"
+                            android:inputType="textPersonName"
+                            android:text="@={viewModel.inputTecnico}"
+                            app:layout_constraintStart_toEndOf="@+id/textView3"
+                            app:layout_constraintTop_toBottomOf="@+id/validDate2"
+                            tools:text="José" />
+
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/guideline"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            app:layout_constraintGuide_begin="3dp" />
+
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/guideline2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            app:layout_constraintGuide_end="690dp" />
+
+                        <Button
+                            android:id="@+id/btnSalvar"
+                            android:layout_width="127dp"
+                            android:layout_height="46dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="16dp"
+                            android:background="@drawable/rounded_rectangle"
+                            android:enabled="@{viewModel.btnSalvar}"
+                            android:onClick="@{()->viewModel.saveOrUpdate()}"
+                            android:text="Salvar"
+                            app:icon="@drawable/ic_check_black_24dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+                        <ImageView
+                            android:id="@+id/imageView"
+                            android:layout_width="90dp"
+                            android:layout_height="107dp"
+                            android:layout_marginTop="56dp"
+                            android:layout_marginEnd="16dp"
+                            android:enabled="@{viewModel.btnSalvar}"
+                            android:src="@{viewModel.inputFoto}"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/contagem3" />
+
+                        <Button
+                            android:id="@+id/btnFoto"
+                            android:layout_width="109dp"
+                            android:layout_height="45dp"
+                            android:layout_marginStart="2dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="12dp"
+                            android:background="@drawable/rounded_rectangle"
+                            android:enabled="@{viewModel.btnFoto}"
+                            android:onClick="abrirCamera"
+                            android:text="Foto"
+                            android:textSize="12sp"
+                            app:icon="@android:drawable/ic_menu_camera"
+                            app:layout_constraintBottom_toTopOf="@+id/imageView"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.055"
+                            app:layout_constraintStart_toEndOf="@+id/spinnerUnid"
+                            app:layout_constraintTop_toBottomOf="@+id/contagem3" />
+
+                        <Spinner
+                            android:id="@+id/spinnerLocal"
+                            style="@style/spinner_table"
+                            android:background="@drawable/spinner_bg"
+                            android:enabled="@{viewModel.btnSalvar}"
+                            app:layout_constraintStart_toEndOf="@+id/textView5"
+                            app:layout_constraintTop_toTopOf="@+id/guideline2" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </ScrollView>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        </LinearLayout>
+
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:fitsSystemWindows="true"
+            app:headerLayout="@layout/nav_header"
+            app:menu="@menu/activity_main_drawer" />
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+
+</layout>

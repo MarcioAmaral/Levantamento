@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Levantamento</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="menu_exportar">Exportar itens</string>
+    <string name="menu_importar">Importar itens</string>
+    <string name="menu_limpar">Limpar base</string>
+    <string name="float_incluir">Limpar base</string>
+    <string name="btn_excluir">Excluir</string>
+    <string name="btn_cancelar">Cancelar</string>
+
+    <string name="codTxtView">Código</string>
+    <string name="descrTxtView">Descrição</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="menuConta">Conta</string>
+    <string name="menuLocal">Local</string>
+    <string name="menuCentro_de_custo">Centro de Custo</string>
+    <string name="menuMarca">Marca</string>
+    <string name="menuModelo">Modelo</string>
+    <string name="menuPlanta">Planta</string>
+    <string name="menuEspecie">Espécie</string>
+    <string name="menuUnidade">Unidade de negócio</string>
+    <string name="menuLinha">Linha</string>
+    <string name="menuEstrutura">Estrutura</string>
+    <string name="headTabelas">Tabelas</string>
+    <string name="menuEmpresa">Empresa</string>
+</resources>
